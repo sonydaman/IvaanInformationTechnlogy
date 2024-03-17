@@ -1,0 +1,125 @@
+---
+title: User Profile with ReactJS
+slug: user-profile-with-reactjs
+date: March 17 2024
+author: SonyDaman
+description:  Creating a user profile is a common feature in web applications. It allows users to manage their personal information and preferences. In this blog, we will discuss how to build a user profile with ReactJS.
+---
+
+# User Profile with ReactJS
+
+
+Creating a user profile is a common feature in web applications. It allows users to manage their personal information and preferences. In this blog, we will discuss how to build a user profile with ReactJS.
+
+
+
+
+Understanding User Profile
+A user profile typically includes information such as the user’s name, email, profile picture, and other personal details. It may also include user preferences, such as language settings or theme selection.
+
+Setting Up the ReactJS Application
+First, you need to set up your ReactJS application. You can do this by using Create React App, a tool that sets up a new single-page React application with a modern build setup with no configuration.
+
+npx create-react-app user-profile
+
+Creating the User Profile Component
+The User Profile component is responsible for displaying the user’s information. This can be done using a stateful component in ReactJS.
+```
+class UserProfile extends React.Component {
+
+    constructor(props) {
+
+      super(props);
+
+      this.state = {
+
+        name: '',
+
+        email: '',
+
+        // other user details
+
+      };
+
+    }
+
+ 
+
+    // methods to handle user input and update state
+
+  }
+```
+Fetching User Data
+You can fetch user data from an API using the componentDidMount lifecycle method in ReactJS. Once the data is fetched, you can update the state of the User Profile component.
+```
+componentDidMount() {
+
+    fetch('/api/user') // replace with your API endpoint
+
+      .then(response => response.json())
+
+      .then(data => this.setState({ name: data.name, email: data.email }));
+
+  }
+```
+Displaying User Data
+You can display the user data in the render method of the User Profile component. This can be done using JSX.
+```
+render() {
+
+    return (
+
+      <div>
+
+        <h1>{this.state.name}</h1>
+
+        <p>{this.state.email}</p>
+
+        // display other user details
+
+      </div>
+
+    );
+
+  }
+
+Updating User Data
+To allow users to update their profile, you can create a form with controlled components in ReactJS. When the form is submitted, you can send a PUT request to the API to update the user data.
+
+handleInputChange(event) {
+
+    this.setState({
+
+      [event.target.name]: event.target.value
+
+    });
+
+  }
+
+ 
+
+  handleSubmit(event) {
+
+    event.preventDefault();
+
+    fetch('/api/user', {
+
+      method: 'PUT',
+
+      body: JSON.stringify(this.state),
+
+      headers: {
+
+        'Content-Type': 'application/json'
+
+      }
+
+    });
+
+  }
+```
+[link text](http://dev.nodeca.com)
+![image](http://unsplash.it/200/200)
+[logo]: img/markdown_logo.png "Title Text"
+Conclusion
+Building a user profile with ReactJS involves creating a stateful component, fetching user data from an API, displaying the data using JSX, and updating the data using a form with controlled components. With these steps, you can effectively create a user profile in your ReactJS application. Happy coding!
